@@ -35,23 +35,26 @@ Web Application là ứng dụng chạy trên trình duyệt, giao tiếp với 
 <img width="1905" height="714" alt="image" src="https://github.com/user-attachments/assets/59a63d22-d94c-47be-b178-4a3f22519149" /> <br>
 ### b) DLL được tạo sau khi build <br>
 <img width="1681" height="130" alt="image" src="https://github.com/user-attachments/assets/2ee85428-a957-430c-897b-c679cd0f9c16" /> <br>
+
 ## 2. Sử dụng Console App và biên dịch <br> 
 ### a) Link DLL vào Refenrences của ConsoleApp <br>
 <img width="580" height="201" alt="image" src="https://github.com/user-attachments/assets/2c671b85-7542-443b-86a3-27a593cc0748" /> <br>
-### b) Chạy file exe của ConsoleApp
+### b) Chạy file exe của ConsoleApp<br>
 <img width="1484" height="755" alt="image" src="https://github.com/user-attachments/assets/61d385b9-c2f5-479f-bfa6-190f20bf5506" /> <br>
-## 3. Windows Form Application
+
+## 3. Windows Form Application <br>
 ### a) Link DLL vào Refenrences của WFA <br>
-<img width="564" height="311" alt="image" src="https://github.com/user-attachments/assets/14fa8d56-1e80-4628-b13f-066468c37b76" />
-### b) Kết quả chạy WFA
+<img width="564" height="311" alt="image" src="https://github.com/user-attachments/assets/14fa8d56-1e80-4628-b13f-066468c37b76" /><br>
+### b) Kết quả chạy WFA <br>
 <img width="782" height="542" alt="image" src="https://github.com/user-attachments/assets/a51cfea6-dee2-471a-8b5c-3ee5621800e5" /> <BR>
+
 ## 4. Web Application <br>
 ### a) Link DLL vào Refenrences của WA <br>
 <img width="580" height="358" alt="image" src="https://github.com/user-attachments/assets/6295ef85-f59f-4bad-8ee1-71096e635f02" /> <br>
 ### b) Viết code và tạo backend cần thiết <br>
 <img width="558" height="432" alt="image" src="https://github.com/user-attachments/assets/13d680d5-66c2-4ee1-8919-f63bb887bb35" /> <br>
 Giao diện cơ bản: <img width="1919" height="970" alt="image" src="https://github.com/user-attachments/assets/2de5453e-c4fa-47ca-baf6-91a3ad7ec465" /> <br>
-### c) Cấu hình IIS và Application pool
+### c) Cấu hình IIS và Application pool<br>
 Tại windows Features tick các tính năng như hình dưới: <br>
 <img width="555" height="492" alt="image" src="https://github.com/user-attachments/assets/ecdd4bdb-4f96-4023-b297-e8b7c1f6342e" /> <br>
 Sử dụng notepad với quyền admin để thêm host: <br>
