@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Dự Đoán Cảm Xúc - Luong's Emotion Predictor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .signature {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-section {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-section.show {
+            display: block;
+        }
+
+        .result-section.vui-ve {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border: 2px solid #ff9a56;
+        }
+
+        .result-section.buon-ba {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border: 2px solid #74b9ff;
+        }
+
+        .result-section.gian-du {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border: 2px solid #fd79a8;
+        }
+
+        .result-section.lo-lang {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+            border: 2px solid #a29bfe;
+        }
+
+        .result-section.khong-xac-dinh {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border: 2px solid #636e72;
+        }
+
+        .emotion-result {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .color-info {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .error {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎭 Dự Đoán Cảm Xúc</h1>
+            <p>Nhập văn bản để phân tích cảm xúc</p>
+            <div class="signature">Developed by Luong - Emotion Analysis System</div>
+        </div>
+
+        <div class="input-section">
+            <div class="input-group">
+                <label for="inputText">Văn bản cần phân tích:</label>
+                <textarea id="inputText" placeholder="Nhập văn bản tiếng Việt hoặc tiếng Anh để phân tích cảm xúc...&#10;&#10;Ví dụ:&#10;- Tôi rất vui mừng hôm nay!&#10;- Buồn quá, không biết làm sao...&#10;- Tức giận với tình huống này!&#10;- Lo lắng về kết quả thi cử..."></textarea>
+            </div>
+            <button class="btn" onclick="analyzeEmotion()">🔍 Phân Tích Cảm Xúc</button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Đang phân tích...</p>
+        </div>
+
+        <div class="error" id="error">
+            <strong>Lỗi:</strong> <span id="errorMessage"></span>
+        </div>
+
+        <div class="result-section" id="resultSection">
+            <div class="emotion-result" id="emotionResult"></div>
+            <div class="color-info" id="colorInfo"></div>
+        </div>
+    </div>
+
+    <script>
+        function analyzeEmotion() {
+            var inputText = document.getElementById('inputText').value.trim();
+            
+            if (!inputText) {
+                showError('Vui lòng nhập văn bản cần phân tích!');
+                return;
+            }
+
+            // Hiển thị loading
+            showLoading(true);
+            hideError();
+            hideResult();
+
+            // Tiền xử lý dữ liệu
+            var processedText = preprocessText(inputText);
+
+            // Gửi request đến backend
+            sendToBackend(processedText);
+        }
+
+        function preprocessText(text) {
+            // Loại bỏ ký tự đặc biệt không cần thiết
+            var processed = text.replace(/[^\w\s:()@'-]/g, ' ');
+            
+            // Chuẩn hóa khoảng trắng
+            processed = processed.replace(/\s+/g, ' ').trim();
+            
+            return processed;
+        }
+
+        function sendToBackend(text) {
+            // Tạo XMLHttpRequest để gửi dữ liệu
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:50081/api.aspx', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    showLoading(false);
+                    
+                    if (xhr.status === 200) {
+                        try {
+                            var result = JSON.parse(xhr.responseText);
+                            handleResponse(result);
+                        } catch (e) {
+                            showError('Lỗi xử lý dữ liệu từ server!');
+                        }
+                    } else {
+                        showError('Không thể kết nối đến server. Vui lòng thử lại sau!');
+                    }
+                }
+            };
+            
+            // Gửi dữ liệu
+            xhr.send('inputText=' + encodeURIComponent(text));
+        }
+
+        function handleResponse(result) {
+            if (result.success) {
+                displayResult(result.emotion, result.color);
+            } else {
+                showError(result.message || 'Có lỗi xảy ra khi phân tích cảm xúc!');
+            }
+        }
+
+        function displayResult(emotion, color) {
+            var resultSection = document.getElementById('resultSection');
+            var emotionResult = document.getElementById('emotionResult');
+            var colorInfo = document.getElementById('colorInfo');
+
+            // Xóa class cũ
+            resultSection.className = 'result-section';
+            
+            // Thêm class mới dựa trên cảm xúc
+            var emotionClass = emotion.toLowerCase().replace(/\s+/g, '-');
+            resultSection.classList.add(emotionClass);
+            resultSection.classList.add('show');
+
+            // Hiển thị kết quả
+            emotionResult.textContent = emotion;
+            colorInfo.textContent = 'Màu sắc đại diện: ' + color;
+
+            // Scroll đến kết quả
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showLoading(show) {
+            var loading = document.getElementById('loading');
+            var btn = document.querySelector('.btn');
+            
+            if (show) {
+                loading.style.display = 'block';
+                btn.disabled = true;
+                btn.textContent = '⏳ Đang xử lý...';
+            } else {
+                loading.style.display = 'none';
+                btn.disabled = false;
+                btn.textContent = '🔍 Phân Tích Cảm Xúc';
+            }
+        }
+
+        function showError(message) {
+            var error = document.getElementById('error');
+            var errorMessage = document.getElementById('errorMessage');
+            
+            errorMessage.textContent = message;
+            error.classList.add('show');
+        }
+
+        function hideError() {
+            var error = document.getElementById('error');
+            error.classList.remove('show');
+        }
+
+        function hideResult() {
+            var resultSection = document.getElementById('resultSection');
+            resultSection.classList.remove('show');
+        }
+
+        // Xử lý Enter key trong textarea
+        document.getElementById('inputText').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                analyzeEmotion();
+            }
+        });
+
+        // Focus vào textarea khi trang load
+        window.addEventListener('load', function() {
+            document.getElementById('inputText').focus();
+        });
+    </script>
+</body>
+</html>
