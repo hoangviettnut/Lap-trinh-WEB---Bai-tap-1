@@ -1,0 +1,6 @@
+C:\Users\viego\source\repos\Du doan cam xuc\bin\Debug\Du doan cam xuc.dll
+C:\Users\viego\source\repos\Du doan cam xuc\bin\Debug\Du doan cam xuc.pdb
+C:\Users\viego\source\repos\Du doan cam xuc\obj\Debug\Du doan cam xuc.csproj.AssemblyReference.cache
+C:\Users\viego\source\repos\Du doan cam xuc\obj\Debug\Du doan cam xuc.csproj.CoreCompileInputs.cache
+C:\Users\viego\source\repos\Du doan cam xuc\obj\Debug\Du doan cam xuc.dll
+C:\Users\viego\source\repos\Du doan cam xuc\obj\Debug\Du doan cam xuc.pdb

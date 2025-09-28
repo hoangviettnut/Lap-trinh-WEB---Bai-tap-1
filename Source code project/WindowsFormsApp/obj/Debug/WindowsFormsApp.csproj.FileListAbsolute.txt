@@ -1,0 +1,12 @@
+C:\Users\viego\source\repos\WindowsFormsApp\bin\Debug\WindowsFormsApp.exe
+C:\Users\viego\source\repos\WindowsFormsApp\bin\Debug\WindowsFormsApp.pdb
+C:\Users\viego\source\repos\WindowsFormsApp\bin\Debug\Du doan cam xuc.dll
+C:\Users\viego\source\repos\WindowsFormsApp\bin\Debug\Du doan cam xuc.pdb
+C:\Users\viego\source\repos\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.AssemblyReference.cache
+C:\Users\viego\source\repos\WindowsFormsApp\obj\Debug\WindowsFormsApp.Properties.Resources.resources
+C:\Users\viego\source\repos\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.GenerateResource.cache
+C:\Users\viego\source\repos\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.CoreCompileInputs.cache
+C:\Users\viego\source\repos\WindowsFormsApp\obj\Debug\WindowsF.5F5EF213.Up2Date
+C:\Users\viego\source\repos\WindowsFormsApp\obj\Debug\WindowsFormsApp.exe
+C:\Users\viego\source\repos\WindowsFormsApp\obj\Debug\WindowsFormsApp.pdb
+C:\Users\viego\source\repos\WindowsFormsApp\obj\Debug\WindowsFormsApp.Form1.resources

@@ -1,0 +1,10 @@
+C:\Users\viego\source\repos\WebApplication\bin\WebApplication.dll.config
+C:\Users\viego\source\repos\WebApplication\bin\WebApplication.dll
+C:\Users\viego\source\repos\WebApplication\bin\WebApplication.pdb
+C:\Users\viego\source\repos\WebApplication\bin\Du doan cam xuc.dll
+C:\Users\viego\source\repos\WebApplication\bin\Du doan cam xuc.pdb
+C:\Users\viego\source\repos\WebApplication\obj\Debug\WebApplication.csproj.AssemblyReference.cache
+C:\Users\viego\source\repos\WebApplication\obj\Debug\WebApplication.csproj.CoreCompileInputs.cache
+C:\Users\viego\source\repos\WebApplication\obj\Debug\WebAppli.11721D13.Up2Date
+C:\Users\viego\source\repos\WebApplication\obj\Debug\WebApplication.dll
+C:\Users\viego\source\repos\WebApplication\obj\Debug\WebApplication.pdb

@@ -1,0 +1,9 @@
+C:\Users\viego\source\repos\ConsoleApp\obj\Debug\ConsoleApp.csproj.AssemblyReference.cache
+C:\Users\viego\source\repos\ConsoleApp\obj\Debug\ConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\viego\source\repos\ConsoleApp\bin\Debug\ConsoleApp.exe
+C:\Users\viego\source\repos\ConsoleApp\bin\Debug\ConsoleApp.pdb
+C:\Users\viego\source\repos\ConsoleApp\bin\Debug\Du doan cam xuc.dll
+C:\Users\viego\source\repos\ConsoleApp\bin\Debug\Du doan cam xuc.pdb
+C:\Users\viego\source\repos\ConsoleApp\obj\Debug\ConsoleApp.csproj.Up2Date
+C:\Users\viego\source\repos\ConsoleApp\obj\Debug\ConsoleApp.exe
+C:\Users\viego\source\repos\ConsoleApp\obj\Debug\ConsoleApp.pdb
